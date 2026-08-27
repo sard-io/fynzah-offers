@@ -48,6 +48,7 @@ const wantedGeos = [
   { code:'AR', flag:'ar', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
   { code:'ET', flag:'et', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'pink' },
   { code:'IR', flag:'ir', region:'MENA', title:'Иран', currency:'IRR', text:'Ищем local cards, bank transfer и локальные платежные решения.', tags:['Local cards','Bank transfer'], tone:'black' },
+  { code:'TR', flag:'tr', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и локальные платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'yellow' },
 ];
 
 export default function Home() {
