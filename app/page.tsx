@@ -52,8 +52,8 @@ const wantedGeos = [
   { code:'KR', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальные pay-in / payout решения и партнеров для high-risk вертикалей.', tags:['Local methods','In / out'], tone:'pink' },
   { code:'KE', region:'Africa', title:'Кения', currency:'KES', text:'В поиске mobile money, M-Pesa и локальных банковских маршрутов.', tags:['Mobile money','Bank transfer'], tone:'black' },
   { code:'AR', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
-  { code:'ET', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'gray' },
-  { code:'TR', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'white' },
+  { code:'ET', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'pink' },
+  { code:'TR', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'black' },
 ];
 
 export default function Home() {
