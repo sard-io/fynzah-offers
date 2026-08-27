@@ -5,16 +5,16 @@ import { useState } from 'react';
 type Category = 'all' | 'russia' | 'cross-border';
 
 const offers = [
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 01', title:'C2C / SBP / Cards', description:'Основной RUB pay-in для Gambling, Betting и Exchange. Банки T1–T3.', rate:'10–13.5%', meta:['5k–150k','RUB','GB / BT / EX'], tone:'pink' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 02', title:'SBP / Cards + PDF', description:'Прием по номеру карты и СБП с подтверждением через PDF-чек.', rate:'11–14%', meta:['1k–200k','RUB','PDF receipt'], tone:'black' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 03', title:'NSPK Multitransfer', description:'QR НСПК с поддержкой мультипереводов и высоким лимитом.', rate:'14–15%', meta:['3k–200k','QR','H2H'], tone:'yellow' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 04', title:'Sber / Gazprom QR', description:'Внутрибанковские QR-маршруты Сбер–Сбер и Газпром–Газпром.', rate:'13.5–14.5%', meta:['100–150k','QR','GB / BT'], tone:'gray' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 05', title:'PSB Ecom', description:'Прямой RUB pay-in через ПСБ для Gambling и Betting трафика.', rate:'13–14%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 06', title:'Alfa → Alfa', description:'Внутрибанковский перевод для Gambling и Betting трафика.', rate:'9.5–10.5%', meta:['10k–150k','RUB','Pay-in'], tone:'black' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 07', title:'C2C / SBP · Betting', description:'Отдельный pay-in маршрут по номеру карты и СБП для Betting.', rate:'7–8%', meta:['RUB','Betting','Contact us'], tone:'yellow' },
-  { category:'cross-border', geo:'Russia / Vietnam', flag:'ru+vn', code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'6–13%', meta:['100–150k','RUB','GB / BT'], tone:'gray' },
-  { category:'cross-border', geo:'Russia / Tajikistan', flag:'ru+tj', code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'9–12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
-  { category:'cross-border', geo:'Russia / Abkhazia', flag:'ru+abkhazia', code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'11.5–12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 01', title:'C2C / SBP / Cards', description:'Основной RUB pay-in для Gambling, Betting и Exchange. Банки T1–T3.', rate:'13.5%', meta:['5k–150k','RUB','GB / BT / EX'], tone:'pink' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 02', title:'SBP / Cards + PDF', description:'Прием по номеру карты и СБП с подтверждением через PDF-чек.', rate:'14%', meta:['1k–200k','RUB','PDF receipt'], tone:'black' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 03', title:'NSPK Multitransfer', description:'QR НСПК с поддержкой мультипереводов и высоким лимитом.', rate:'15%', meta:['3k–200k','QR','H2H'], tone:'yellow' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 04', title:'Sber / Gazprom QR', description:'Внутрибанковские QR-маршруты Сбер–Сбер и Газпром–Газпром.', rate:'14.5%', meta:['100–150k','QR','GB / BT'], tone:'gray' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 05', title:'PSB Ecom', description:'Прямой RUB pay-in через ПСБ для Gambling и Betting трафика.', rate:'14%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 06', title:'Alfa → Alfa', description:'Внутрибанковский перевод для Gambling и Betting трафика.', rate:'10.5%', meta:['10k–150k','RUB','Pay-in'], tone:'black' },
+  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 07', title:'C2C / SBP · Betting', description:'Отдельный pay-in маршрут по номеру карты и СБП для Betting.', rate:'8%', meta:['RUB','Betting','Contact us'], tone:'yellow' },
+  { category:'cross-border', geo:'Russia / Vietnam', flag:'ru+vn', code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'13%', meta:['100–150k','RUB','GB / BT'], tone:'gray' },
+  { category:'cross-border', geo:'Russia / Tajikistan', flag:'ru+tj', code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
+  { category:'cross-border', geo:'Russia / Abkhazia', flag:'ru+abkhazia', code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
   { category:'cross-border', geo:'Kazakhstan', flag:'kz', code:'XBD · 04', title:'KZT P2P', description:'Cross-border P2P-направление с расчетом в тенге.', rate:'contact us', meta:['KZT','P2P','Contact us'], tone:'yellow' },
 ] as const;
 
@@ -25,11 +25,11 @@ const filters: { id: Category; label: string }[] = [
 ];
 
 const solutions = [
-  { code:'C2C', title:'C2C / SBP classic', text:'Основной RUB flow: карты, СБП и банки T1–T3.', tags:['5k–150k','10–13.5%','RUB'] },
-  { code:'PDF', title:'SBP / Cards + PDF', text:'RUB pay-in с PDF-чеками, лимиты до 200k.', tags:['1k–200k','11–14%','Exchange / GB'] },
-  { code:'NSP', title:'NSPK Multitransfer', text:'QR-оплата с мультипереводами и лимитом до 200k.', tags:['QR payment','14–15%','H2H'] },
-  { code:'BNK', title:'Bank-to-bank QR', text:'Сбер–Сбер и Газпром–Газпром с актуальной вилкой.', tags:['100–150k','13.5–14.5%','RUB'] },
-  { code:'VNM', title:'QR Vietnam', text:'Сбер / ВТБ QR, минимум 100 RUB, ставки от 6%.', tags:['Vietnam','6–13%','Cross-border'] },
+  { code:'C2C', title:'C2C / SBP classic', text:'Основной RUB flow: карты, СБП и банки T1–T3.', tags:['5k–150k','13.5%','RUB'] },
+  { code:'PDF', title:'SBP / Cards + PDF', text:'RUB pay-in с PDF-чеками, лимиты до 200k.', tags:['1k–200k','14%','Exchange / GB'] },
+  { code:'NSP', title:'NSPK Multitransfer', text:'QR-оплата с мультипереводами и лимитом до 200k.', tags:['QR payment','15%','H2H'] },
+  { code:'BNK', title:'Bank-to-bank QR', text:'Сбер–Сбер и Газпром–Газпром по максимальной ставке.', tags:['100–150k','14.5%','RUB'] },
+  { code:'VNM', title:'QR Vietnam', text:'Сбер / ВТБ QR, минимум 100 RUB, ставка до 13%.', tags:['Vietnam','13%','Cross-border'] },
   { code:'XBD', title:'Cross-border routes', text:'YouMoney Tajikistan, Abkhazia transgran и Kazakhstan P2P.', tags:['TJ','AB','KZ'] },
 ];
 
@@ -87,7 +87,7 @@ export default function Home() {
             <div className="product-head"><span className="f-mark">F</span><small>ROUTE CONTROL</small><b>LIVE</b></div>
             <div className="product-stat"><span>Active routes</span><strong>11</strong><em>5 GEO</em></div>
             <div className="product-bars">{[42,67,51,79,63,96,72,88,58,100].map((height,index) => <i key={index} style={{height:`${height}%`}} />)}</div>
-            <div className="product-foot"><span><small>RUB</small><b>6–15%</b></span><span><small>SETTLE</small><b>T+0</b></span><span><small>FEES</small><b>BY ROUTE</b></span></div>
+            <div className="product-foot"><span><small>MAX RATE</small><b>15%</b></span><span><small>SETTLE</small><b>T+0</b></span><span><small>FEES</small><b>BY ROUTE</b></span></div>
           </div>
           <div className="float-note note-one"><span>↗</span><div><small>NSPK QR</small><b>up to 200k</b></div></div>
           <div className="float-note note-two"><span>✓</span><div><small>Settlement</small><b>Rapira / USDT</b></div></div>
