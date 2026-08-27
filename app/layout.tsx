@@ -20,18 +20,18 @@ export const metadata: Metadata = {
   ),
   title: 'Fynzah — платежные офферы без границ · August 2026',
   description:
-    '15 рабочих pay-in и payout офферов для Gambling, Betting и Exchange по России, СНГ, Кавказу и Азии.',
+    '11 актуальных pay-in офферов для Gambling, Betting и Exchange по России и cross-border направлениям.',
   openGraph: {
     title: 'Fynzah — платежные офферы без границ',
     description:
-      '15 рабочих pay-in и payout офферов · August 2026.',
+      '11 актуальных pay-in офферов · August 2026.',
     images: [{ url: '/og.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Fynzah — платежные офферы без границ',
     description:
-      '15 рабочих pay-in и payout офферов · August 2026.',
+      '11 актуальных pay-in офферов · August 2026.',
     images: ['/og.png'],
   },
 };
