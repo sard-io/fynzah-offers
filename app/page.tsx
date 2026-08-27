@@ -15,7 +15,7 @@ const offers = [
   { category:'cross-border', geo:'Russia / Vietnam', flag:'ru+vn', code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'13%', meta:['100–150k','RUB','GB / BT'], tone:'gray' },
   { category:'cross-border', geo:'Russia / Tajikistan', flag:'ru+tj', code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
   { category:'cross-border', geo:'Russia / Abkhazia', flag:'ru+abkhazia', code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
-  { category:'cross-border', geo:'Kazakhstan', flag:'kz', code:'XBD · 04', title:'KZT P2P', description:'Cross-border P2P-направление с расчетом в тенге.', rate:'contact us', meta:['KZT','P2P','Contact us'], tone:'yellow' },
+  { category:'cross-border', geo:'Kazakhstan', flag:'kz', code:'XBD · 04', title:'KZT P2P', description:'Cross-border P2P-направление с расчетом в тенге.', rate:'contact us', meta:['KZT','P2P','Cross-border'], tone:'yellow' },
 ] as const;
 
 const filters: { id: Category; label: string }[] = [
@@ -112,7 +112,10 @@ export default function Home() {
             <article className={`offer-card tone-${offer.tone}`} key={offer.code}>
               <div className="offer-top"><span>{offer.code}</span><b><span className="geo-flags" aria-hidden="true">{offer.flag.split('+').map((flag) => flag === 'abkhazia' ? <i className="flag-abkhazia" key={flag} /> : <i className={`fi fi-${flag}`} key={flag} />)}</span>{offer.geo}</b></div>
               <div><h3>{offer.title}</h3><p>{offer.description}</p></div>
-              <div className="offer-rate"><small>RATE</small><strong>{offer.rate}</strong></div>
+              <div className="offer-rate">
+                <small>{offer.rate === 'contact us' ? 'AVAILABILITY' : 'RATE'}</small>
+                {offer.rate === 'contact us' ? <a className="rate-contact" href="#contact">Contact us <span>↗</span></a> : <strong>{offer.rate}</strong>}
+              </div>
               <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
             </article>
           ))}
