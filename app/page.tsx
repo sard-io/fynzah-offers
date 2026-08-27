@@ -170,7 +170,7 @@ export default function Home() {
 
       <section className="cta shell" id="contact">
         <div className="cta-copy"><p>READY TO START?</p><h2>Давайте подберем<br />рабочий маршрут.</h2><span>Пришлите GEO, вертикаль, дневной объем и тип трафика — вернемся с доступностью и финальными условиями.</span></div>
-        <div className="cta-actions"><a className="button button-black" href="https://t.me/psp_coo" target="_blank" rel="noreferrer">Написать в Telegram <span>↗</span></a><a className="button button-white" href="mailto:info@fynzah.com">info@fynzah.com</a></div>
+        <div className="cta-actions"><a className="button button-black" href="https://t.me/psp_assistant" target="_blank" rel="noreferrer">@psp_assistant <span>↗</span></a><a className="button button-white" href="mailto:info@fynzah.com">info@fynzah.com</a></div>
         <div className="cta-orbit" aria-hidden="true"><strong>11</strong><small>ACTIVE<br />OFFERS</small></div>
       </section>
 
