@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    'https://fynzah-active-offers-aug-26.quantumsoragenerate.chatgpt.site',
+    'https://fynzah-offers.vercel.app',
   ),
   title: 'Fynzah — платежные офферы без границ · August 2026',
   description:
