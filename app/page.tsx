@@ -5,21 +5,21 @@ import { useState } from 'react';
 type Category = 'all' | 'russia' | 'cis' | 'caucasus' | 'asia';
 
 const offers = [
-  { category:'russia', geo:'Russia', flag:'RU', code:'RU · 01', title:'C2C / SBP / Cards', description:'Основной RUB flow для Gambling, Betting и Exchange. Банки T1–T3.', rate:'9–12%', meta:['RUB','Pay-in','Live'], tone:'pink' },
-  { category:'russia', geo:'Russia', flag:'RU', code:'RU · 02', title:'PDF receipt flow', description:'SBP и карты с подтверждением платежа через PDF receipt.', rate:'10–12%', meta:['1k–200k','Exchange','Priority'], tone:'black' },
-  { category:'russia', geo:'Russia', flag:'RU', code:'RU · 03', title:'NSPK QR Multitransfer', description:'QR-оплата с поддержкой мультипереводов и высоким лимитом.', rate:'13%', meta:['up to 200k','QR','Live'], tone:'yellow' },
-  { category:'russia', geo:'Russia', flag:'RU', code:'RU · 04', title:'PSB', description:'Прямой RUB pay-in маршрут под актуальный high-risk трафик.', rate:'12%', meta:['RUB','Pay-in','Live'], tone:'gray' },
-  { category:'russia', geo:'Russia', flag:'RU', code:'RU · 05', title:'Mobile Commerce', description:'Оплата с мобильного баланса под текущие приоритеты.', rate:'up to 23%', meta:['RUB','MobCom','Priority'], tone:'pink' },
-  { category:'russia', geo:'Russia / KZ', flag:'BT', code:'RU · 06', title:'Bank Transfer', description:'BT-маршрут для RUB и KZT с гибким распределением трафика.', rate:'18–21%', meta:['RUB / KZT','BT','Live'], tone:'black' },
-  { category:'cis', geo:'Tajikistan', flag:'TJ', code:'CIS · 01', title:'Alfa SBP / YouMoney', description:'Локальный маршрут для приема платежей в Таджикистане.', rate:'8–12%', meta:['Pay-in','Local','Live'], tone:'yellow' },
-  { category:'cis', geo:'Uzbekistan', flag:'UZ', code:'CIS · 02', title:'UZCARD / HUMO', description:'Локальные карты и transgran для платежей в Узбекистане.', rate:'request', meta:['UZS','Cards','On request'], tone:'gray' },
-  { category:'cis', geo:'Kazakhstan', flag:'KZ', code:'CIS · 03', title:'KZT P2P', description:'Классический P2P flow в тенге с рабочими лимитами.', rate:'7.5–9.5%', meta:['KZT','P2P','Live'], tone:'pink' },
-  { category:'cis', geo:'Kyrgyzstan', flag:'KG', code:'CIS · 04', title:'MBANK ELQR', description:'Двусторонний локальный маршрут через MBANK ELQR.', rate:'5% / 1%', meta:['Pay-in / out','KGS','Live'], tone:'black' },
-  { category:'caucasus', geo:'Armenia', flag:'AM', code:'CAU · 01', title:'KZT → AMD', description:'Cross-border конверсия KZT в армянский драм.', rate:'request', meta:['AMD','Cross-border','On request'], tone:'yellow' },
-  { category:'caucasus', geo:'Georgia', flag:'GE', code:'CAU · 02', title:'KZT → GEL', description:'Cross-border конверсия KZT в грузинский лари.', rate:'request', meta:['GEL','Cross-border','On request'], tone:'gray' },
-  { category:'caucasus', geo:'Abkhazia', flag:'AB', code:'CAU · 03', title:'RUB local flow', description:'Прямой RUB pay-in с лимитами от 1k до 150k.', rate:'10.5%', meta:['1k–150k','RUB','Live'], tone:'pink' },
-  { category:'asia', geo:'Vietnam', flag:'VN', code:'ASIA · 01', title:'QR Sber / VTB', description:'Cross-border QR с минимальным платежом от 100 RUB.', rate:'5–11%', meta:['min 100 RUB','QR','Live'], tone:'black' },
-  { category:'asia', geo:'Azerbaijan', flag:'AZ', code:'ASIA · 02', title:'AZN P2P / QECOM', description:'Два локальных сценария приема платежей в манатах.', rate:'5.5% / 7%', meta:['AZN','In / out','Live'], tone:'yellow' },
+  { category:'russia', geo:'Russia', flag:'🇷🇺', code:'RU · 01', title:'C2C / SBP / Cards', description:'Основной RUB flow для Gambling, Betting и Exchange. Банки T1–T3.', rate:'9–12%', meta:['RUB','Pay-in','Live'], tone:'pink' },
+  { category:'russia', geo:'Russia', flag:'🇷🇺', code:'RU · 02', title:'PDF receipt flow', description:'SBP и карты с подтверждением платежа через PDF receipt.', rate:'10–12%', meta:['1k–200k','Exchange','Priority'], tone:'black' },
+  { category:'russia', geo:'Russia', flag:'🇷🇺', code:'RU · 03', title:'NSPK QR Multitransfer', description:'QR-оплата с поддержкой мультипереводов и высоким лимитом.', rate:'13%', meta:['up to 200k','QR','Live'], tone:'yellow' },
+  { category:'russia', geo:'Russia', flag:'🇷🇺', code:'RU · 04', title:'PSB', description:'Прямой RUB pay-in маршрут под актуальный high-risk трафик.', rate:'12%', meta:['RUB','Pay-in','Live'], tone:'gray' },
+  { category:'russia', geo:'Russia', flag:'🇷🇺', code:'RU · 05', title:'Mobile Commerce', description:'Оплата с мобильного баланса под текущие приоритеты.', rate:'up to 23%', meta:['RUB','MobCom','Priority'], tone:'pink' },
+  { category:'russia', geo:'Russia / KZ', flag:'🇷🇺 🇰🇿', code:'RU · 06', title:'Bank Transfer', description:'BT-маршрут для RUB и KZT с гибким распределением трафика.', rate:'18–21%', meta:['RUB / KZT','BT','Live'], tone:'black' },
+  { category:'cis', geo:'Tajikistan', flag:'🇹🇯', code:'CIS · 01', title:'Alfa SBP / YouMoney', description:'Локальный маршрут для приема платежей в Таджикистане.', rate:'8–12%', meta:['Pay-in','Local','Live'], tone:'yellow' },
+  { category:'cis', geo:'Uzbekistan', flag:'🇺🇿', code:'CIS · 02', title:'UZCARD / HUMO', description:'Локальные карты и transgran для платежей в Узбекистане.', rate:'contact us', meta:['UZS','Cards','Contact us'], tone:'gray' },
+  { category:'cis', geo:'Kazakhstan', flag:'🇰🇿', code:'CIS · 03', title:'KZT P2P', description:'Классический P2P flow в тенге с рабочими лимитами.', rate:'7.5–9.5%', meta:['KZT','P2P','Live'], tone:'pink' },
+  { category:'cis', geo:'Kyrgyzstan', flag:'🇰🇬', code:'CIS · 04', title:'MBANK ELQR', description:'Двусторонний локальный маршрут через MBANK ELQR.', rate:'5% / 1%', meta:['Pay-in / out','KGS','Live'], tone:'black' },
+  { category:'caucasus', geo:'Armenia', flag:'🇦🇲', code:'CAU · 01', title:'KZT → AMD', description:'Cross-border конверсия KZT в армянский драм.', rate:'contact us', meta:['AMD','Cross-border','Contact us'], tone:'yellow' },
+  { category:'caucasus', geo:'Georgia', flag:'🇬🇪', code:'CAU · 02', title:'KZT → GEL', description:'Cross-border конверсия KZT в грузинский лари.', rate:'contact us', meta:['GEL','Cross-border','Contact us'], tone:'gray' },
+  { category:'caucasus', geo:'Abkhazia', flag:'abkhazia', code:'CAU · 03', title:'RUB local flow', description:'Прямой RUB pay-in с лимитами от 1k до 150k.', rate:'10.5%', meta:['1k–150k','RUB','Live'], tone:'pink' },
+  { category:'asia', geo:'Vietnam', flag:'🇻🇳', code:'ASIA · 01', title:'QR Sber / VTB', description:'Cross-border QR с минимальным платежом от 100 RUB.', rate:'5–11%', meta:['min 100 RUB','QR','Live'], tone:'black' },
+  { category:'asia', geo:'Azerbaijan', flag:'🇦🇿', code:'ASIA · 02', title:'AZN P2P / QECOM', description:'Два локальных сценария приема платежей в манатах.', rate:'5.5% / 7%', meta:['AZN','In / out','Live'], tone:'yellow' },
 ] as const;
 
 const filters: { id: Category; label: string }[] = [
@@ -49,11 +49,11 @@ const terms = [
 ];
 
 const wantedGeos = [
-  { code:'KR', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальные pay-in / payout решения и партнеров для high-risk вертикалей.', tags:['Local methods','In / out'], tone:'pink' },
-  { code:'KE', region:'Africa', title:'Кения', currency:'KES', text:'В поиске mobile money, M-Pesa и локальных банковских маршрутов.', tags:['Mobile money','Bank transfer'], tone:'black' },
-  { code:'AR', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
-  { code:'ET', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'pink' },
-  { code:'TR', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'black' },
+  { code:'KR', flag:'🇰🇷', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальные pay-in / payout решения и партнеров для high-risk вертикалей.', tags:['Local methods','In / out'], tone:'pink' },
+  { code:'KE', flag:'🇰🇪', region:'Africa', title:'Кения', currency:'KES', text:'В поиске mobile money, M-Pesa и локальных банковских маршрутов.', tags:['Mobile money','Bank transfer'], tone:'black' },
+  { code:'AR', flag:'🇦🇷', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
+  { code:'ET', flag:'🇪🇹', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'pink' },
+  { code:'TR', flag:'🇹🇷', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'black' },
 ];
 
 export default function Home() {
@@ -115,7 +115,7 @@ export default function Home() {
         <div className="offer-grid">
           {visibleOffers.map((offer) => (
             <article className={`offer-card tone-${offer.tone}`} key={offer.code}>
-              <div className="offer-top"><span>{offer.code}</span><b><i>{offer.flag}</i>{offer.geo}</b></div>
+              <div className="offer-top"><span>{offer.code}</span><b>{offer.flag === 'abkhazia' ? <i className="flag-abkhazia" aria-label="Флаг Абхазии" /> : <i>{offer.flag}</i>}{offer.geo}</b></div>
               <div><h3>{offer.title}</h3><p>{offer.description}</p></div>
               <div className="offer-rate"><small>RATE</small><strong>{offer.rate}</strong></div>
               <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
@@ -127,15 +127,15 @@ export default function Home() {
       <section className="wanted" id="wanted">
         <div className="shell">
           <div className="section-title wanted-title">
-            <div><p>OPEN REQUESTS · НОВЫЕ GEO</p><h2>Направления,<br />которые мы ищем.</h2></div>
+            <div><p>CONTACT US · НОВЫЕ GEO</p><h2>Направления,<br />которые мы ищем.</h2></div>
             <p>Открыты к предложениям от провайдеров и команд с работающей локальной инфраструктурой.</p>
           </div>
           <div className="wanted-grid">
             {wantedGeos.map((geo) => (
               <article className={`wanted-card wanted-${geo.tone}`} key={geo.code}>
-                <div className="wanted-head"><span>{geo.code}</span><b><i /> SCOUTING</b></div>
+                <div className="wanted-head"><span><i>{geo.flag}</i><small>{geo.code}</small></span><b><i /> SCOUTING</b></div>
                 <div className="wanted-geo"><small>{geo.region} · {geo.currency}</small><h3>{geo.title}</h3><p>{geo.text}</p></div>
-                <div className="wanted-bottom"><div className="tag-row">{geo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><b>OPEN REQUEST ↗</b></div>
+                <div className="wanted-bottom"><div className="tag-row">{geo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><b>CONTACT US ↗</b></div>
               </article>
             ))}
           </div>
