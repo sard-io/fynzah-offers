@@ -42,6 +42,14 @@ const terms = [
   { number:'06', label:'Availability', value:'Live check', text:'Зависит от провайдера и качества трафика.' },
 ];
 
+const wantedGeos = [
+  { code:'KR', flag:'kr', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальные pay-in / payout решения и партнеров для high-risk вертикалей.', tags:['Local methods','In / out'], tone:'pink' },
+  { code:'KE', flag:'ke', region:'Africa', title:'Кения', currency:'KES', text:'В поиске mobile money, M-Pesa и локальных банковских маршрутов.', tags:['Mobile money','Bank transfer'], tone:'black' },
+  { code:'AR', flag:'ar', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
+  { code:'ET', flag:'et', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'pink' },
+  { code:'IR', flag:'ir', region:'MENA', title:'Иран', currency:'IRR', text:'Ищем local cards, bank transfer и локальные платежные решения.', tags:['Local cards','Bank transfer'], tone:'black' },
+];
+
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<Category>('all');
   const visibleOffers = activeFilter === 'all' ? offers : offers.filter((offer) => offer.category === activeFilter);
@@ -52,6 +60,7 @@ export default function Home() {
         <a className="brand" href="#top" aria-label="Fynzah — наверх">fynzah<span>.</span></a>
         <nav aria-label="Основная навигация">
           <a href="#offers">Офферы</a>
+          <a href="#wanted">В поиске</a>
           <a href="#solutions">Решения</a>
           <a href="#terms">Условия</a>
         </nav>
@@ -106,6 +115,24 @@ export default function Home() {
               <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="wanted" id="wanted">
+        <div className="shell">
+          <div className="section-title wanted-title">
+            <div><p>CONTACT US · НОВЫЕ GEO</p><h2>Направления,<br />которые мы ищем.</h2></div>
+            <p>Открыты к предложениям от провайдеров и команд с работающей локальной инфраструктурой.</p>
+          </div>
+          <div className="wanted-grid">
+            {wantedGeos.map((geo) => (
+              <article className={`wanted-card wanted-${geo.tone}`} key={geo.code}>
+                <div className="wanted-head"><span><i className={`fi fi-${geo.flag}`} aria-hidden="true" /><small>{geo.code}</small></span><b><i /> SCOUTING</b></div>
+                <div className="wanted-geo"><small>{geo.region} · {geo.currency}</small><h3>{geo.title}</h3><p>{geo.text}</p></div>
+                <div className="wanted-bottom"><div className="tag-row">{geo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><b>CONTACT US ↗</b></div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
