@@ -46,7 +46,7 @@ const wantedGeos = [
   { code:'KR', flag:'kr', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальные pay-in / payout решения и партнеров для high-risk вертикалей.', tags:['Local methods','In / out'], tone:'pink' },
   { code:'KE', flag:'ke', region:'Africa', title:'Кения', currency:'KES', text:'В поиске mobile money, M-Pesa и локальных банковских маршрутов.', tags:['Mobile money','Bank transfer'], tone:'black' },
   { code:'AR', flag:'ar', region:'LATAM', title:'Аргентина', currency:'ARS', text:'Ищем P2P, bank transfer и локальные платежные кошельки.', tags:['P2P','Local wallets'], tone:'yellow' },
-  { code:'ET', flag:'et', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'white' },
+  { code:'ET', flag:'et', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'gray' },
   { code:'IR', flag:'ir', region:'MENA', title:'Иран', currency:'IRR', text:'Ищем local cards, bank transfer и локальные платежные решения.', tags:['Local cards','Bank transfer'], tone:'yellow' },
   { code:'TR', flag:'tr', region:'MENA', title:'Турция', currency:'TRY', text:'Ищем local cards, bank transfer и локальные платежные кошельки.', tags:['Local cards','Bank transfer'], tone:'pink' },
 ];
