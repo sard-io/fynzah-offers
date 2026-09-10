@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 type Category = 'all' | 'russia' | 'cross-border';
 
-const telegramHref = (label: string) => `https://t.me/psp_assistant?text=${encodeURIComponent(`Привет! Интересует решение: ${label}`)}`;
+const telegramHref = (label: string) => `https://t.me/PSP_MarkBDM?text=${encodeURIComponent(`Привет! Интересует решение: ${label}`)}`;
 
 const offers = [
   { category:'russia', geo:'Russia', flag:'ru', code:'RU · 01', title:'C2C / SBP', description:'Основной RUB pay-in для Gambling, Betting и Exchange. Банки T1–T3.', rate:'13.5%', meta:['5k–150k','RUB','Gambling / Betting / Exchange'], tone:'pink' },
@@ -144,7 +144,7 @@ export default function Home() {
 
       <section className="cta shell" id="contact">
         <div className="cta-copy"><p>READY TO START?</p><h2>Давайте подберем<br />рабочий маршрут.</h2><span>Пришлите GEO, вертикаль, дневной объем и тип трафика — вернемся с доступностью и финальными условиями.</span></div>
-        <div className="cta-actions"><a className="button button-black" href="https://t.me/psp_assistant" target="_blank" rel="noreferrer">@psp_assistant <span>↗</span></a><a className="button button-white" href="mailto:info@fynzah.com">info@fynzah.com</a></div>
+        <div className="cta-actions"><a className="button button-black" href="https://t.me/PSP_MarkBDM" target="_blank" rel="noreferrer">@PSP_MarkBDM <span>↗</span></a><a className="button button-white" href="mailto:info@fynzah.com">info@fynzah.com</a></div>
         <div className="cta-orbit" aria-hidden="true"><strong>12</strong><small>ACTIVE<br />OFFERS</small></div>
       </section>
 
