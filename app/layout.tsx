@@ -18,21 +18,21 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     'https://fynzah-offers.vercel.app',
   ),
-  title: 'Fynzah — платежные офферы без границ · August 2026',
+  title: 'Fynzah — платежные офферы без границ · October 2026',
   description:
-    '11 актуальных pay-in офферов для Gambling, Betting и Exchange по России и cross-border направлениям.',
+    '15 платежных офферов для Gambling, Betting и Exchange по России и cross-border направлениям.',
   openGraph: {
     title: 'Fynzah — платежные офферы без границ',
     description:
-      '11 актуальных pay-in офферов · August 2026.',
-    images: [{ url: '/og.png', width: 1200, height: 630 }],
+      '15 платежных офферов · October 2026.',
+    images: [{ url: '/og-october-2026.png', width: 1731, height: 909 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Fynzah — платежные офферы без границ',
     description:
-      '11 актуальных pay-in офферов · August 2026.',
-    images: ['/og.png'],
+      '15 платежных офферов · October 2026.',
+    images: ['/og-october-2026.png'],
   },
 };
 
