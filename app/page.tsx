@@ -172,35 +172,39 @@ export default function Home() {
           {visibleOffers.map((offer) => (
             <article className={`offer-card tone-${offer.tone}`} key={offer.code}>
               <div className="offer-top"><span>{offer.code}</span><b><span className="geo-flags" aria-hidden="true">{offer.flag.split('+').map((flag) => flag === 'abkhazia' ? <i className="flag-abkhazia" key={flag} /> : <i className={`fi fi-${flag}`} key={flag} />)}</span>{offer.geo}</b></div>
-              <div><h3>{offer.title}</h3><p>{offer.description}</p></div>
-              <div className="offer-rate">
-                {offer.details ? (
-                  <div className="offer-rate-pair">
-                    <div><small>PAY IN</small><strong>{offer.details.payIn.rate}</strong></div>
-                    <div><small>PAY OUT</small><strong>{offer.details.payOut.rate}</strong></div>
-                  </div>
-                ) : (
-                  <>
-                    <small>{offer.rate === 'contact us' ? 'AVAILABILITY' : 'RATE'}</small>
-                    {offer.rate === 'contact us' ? <a className="rate-contact" href={telegramHref(`${offer.geo} — ${offer.title}`)} target="_blank" rel="noreferrer">Contact us <span>↗</span></a> : <strong>{offer.rate}</strong>}
-                  </>
+              <div className="offer-copy"><h3>{offer.title}</h3><p>{offer.description}</p></div>
+              <div className="offer-bottom">
+                <div className="offer-rate">
+                  {offer.details ? (
+                    <div className="offer-rate-pair">
+                      <div><small>PAY IN</small><strong>{offer.details.payIn.rate}</strong></div>
+                      <div><small>PAY OUT</small><strong>{offer.details.payOut.rate}</strong></div>
+                    </div>
+                  ) : (
+                    <>
+                      <small>RATE</small>
+                      <strong className={offer.rate === 'contact us' ? 'offer-rate-request' : undefined}>{offer.rate === 'contact us' ? 'По запросу' : offer.rate}</strong>
+                    </>
+                  )}
+                </div>
+                <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                {offer.details && (
+                  <details className="offer-details">
+                    <summary>Условия и лимиты <span aria-hidden="true">⌄</span></summary>
+                    <div className="offer-details-content">
+                      <dl>
+                        <div><dt>Pay in · лимиты</dt><dd>{offer.details.payIn.limits}</dd></div>
+                        <div><dt>Pay out · лимиты</dt><dd>{offer.details.payOut.limits}</dd></div>
+                        {offer.details.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+                      </dl>
+                      {offer.details.note && <p>{offer.details.note}</p>}
+                    </div>
+                  </details>
                 )}
               </div>
-              <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              {offer.details && (
-                <details className="offer-details">
-                  <summary>Все условия <span aria-hidden="true">⌄</span></summary>
-                  <div className="offer-details-content">
-                    <dl>
-                      <div><dt>Pay in · лимиты</dt><dd>{offer.details.payIn.limits}</dd></div>
-                      <div><dt>Pay out · лимиты</dt><dd>{offer.details.payOut.limits}</dd></div>
-                      {offer.details.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
-                    </dl>
-                    {offer.details.note && <p>{offer.details.note}</p>}
-                  </div>
-                </details>
-              )}
-              {offer.rate !== 'contact us' && <a className="rate-contact offer-connect" href={telegramHref(`${offer.geo} — ${offer.title}`)} target="_blank" rel="noreferrer">Написать <span>↗</span></a>}
+              <a className="offer-action" href={telegramHref(`${offer.geo} — ${offer.title}`)} target="_blank" rel="noreferrer">
+                Обсудить маршрут <span aria-hidden="true">↗</span>
+              </a>
             </article>
           ))}
         </div>
