@@ -4,12 +4,7 @@ import { useState } from 'react';
 
 type Category = 'all' | 'russia' | 'cross-border';
 
-type OfferDetails = {
-  payIn: { rate: string; limits: string };
-  payOut: { rate: string; limits: string };
-  facts: { label: string; value: string }[];
-  note?: string;
-};
+type OfferRates = { payIn: string; payOut: string };
 
 type Offer = {
   category: Exclude<Category, 'all'>;
@@ -21,7 +16,7 @@ type Offer = {
   rate?: string;
   meta: string[];
   tone: 'pink' | 'black' | 'yellow' | 'gray';
-  details?: OfferDetails;
+  rates?: OfferRates;
 };
 
 const telegramHref = (label: string) => `https://t.me/psp_assistant?text=${encodeURIComponent(`Привет! Интересует решение: ${label}`)}`;
@@ -37,57 +32,11 @@ const offers: Offer[] = [
   { category:'cross-border', geo:'Russia / Tajikistan', flag:'ru+tj', code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
   { category:'cross-border', geo:'Russia / Abkhazia', flag:'ru+abkhazia', code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
   { category:'cross-border', geo:'Kazakhstan', flag:'kz', code:'XBD · 04', title:'KZT Cross-border', description:'Трансграничные маршруты из Казахстана: Грузия, Киргизия — постепенно расширяем.', rate:'contact us', meta:['KZT','Georgia','Kyrgyzstan'], tone:'yellow' },
-  { category:'cross-border', geo:'South Korea', flag:'kr', code:'XBD · 05', title:'Korea Bank Transfer', description:'Банковские переводы через Shinhan Bank, KEB Hana Bank и IBK для Gambling и Betting.', meta:['KRW','Bank transfer','Gambling / Betting'], tone:'gray', details: {
-    payIn: { rate:'8%', limits:'10 000 – 1 500 000 KRW' },
-    payOut: { rate:'3,5%', limits:'10 000 – 1 500 000 KRW' },
-    facts: [
-      { label:'Банки', value:'Shinhan Bank, KEB Hana Bank, IBK' },
-      { label:'Обмен валюты', value:'XE +10%' },
-      { label:'Settlement', value:'T+0; комиссия USDT 0–7 USDT' },
-      { label:'Мин. баланс для settlement', value:'3 000 USD' },
-      { label:'Валюта баланса', value:'USDT' },
-    ],
-  } },
+  { category:'cross-border', geo:'South Korea', flag:'kr', code:'XBD · 05', title:'Korea Bank Transfer', description:'Банковские переводы через Shinhan Bank, KEB Hana Bank и IBK для Gambling и Betting.', meta:['KRW','Bank transfer','Gambling / Betting'], tone:'gray', rates:{ payIn:'8%', payOut:'3,5%' } },
   { category:'cross-border', geo:'Argentina', flag:'ar', code:'XBD · 06', title:'Argentina P2P + Wallets', description:'Локальные P2P-переводы и платежные кошельки для Gambling и Betting трафика.', rate:'contact us', meta:['ARS','P2P','Local wallets'], tone:'pink' },
-  { category:'cross-border', geo:'Turkey', flag:'tr', code:'XBD · 07', title:'Turkey Bank Transfer', description:'IBAN и банковские переводы для Gambling и Betting.', meta:['TRY','IBAN','Bank transfer'], tone:'black', details: {
-    payIn: { rate:'7%', limits:'100 – 100 000 TRY' },
-    payOut: { rate:'3%', limits:'100 – 100 000 TRY' },
-    facts: [
-      { label:'Банки', value:'Ziraat, Anlim, Waqif, QNB' },
-      { label:'Обмен валюты', value:'Paribu +4%' },
-      { label:'Settlement', value:'T+0; комиссия USDT 0–7 USDT' },
-      { label:'Мин. баланс для settlement', value:'3 000 USD' },
-      { label:'Интеграция', value:'H2H / link' },
-      { label:'Валюта баланса', value:'USDT' },
-      { label:'Апелляции по API', value:'Да' },
-    ],
-  } },
-  { category:'cross-border', geo:'Tanzania', flag:'tz', code:'XBD · 08', title:'Tanzania Mobile Money', description:'Tigo Pesa, Vodacom M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['TZS','Mobile Money','iGaming'], tone:'yellow', details: {
-    payIn: { rate:'5%', limits:'100 – 250 000 TZS' },
-    payOut: { rate:'4%', limits:'30 / 100 – 250 000 TZS' },
-    facts: [
-      { label:'Методы', value:'Tigo Pesa, Vodacom M-Pesa, Airtel Money / Mobile Money' },
-      { label:'Минимальный объём', value:'от 100 000 USD в день по GEO' },
-      { label:'Settlement', value:'USDT, T+2' },
-      { label:'Интеграция', value:'Payment Page / H2H / Redirect' },
-      { label:'Тип трафика', value:'FTD + Trusted / iGaming only' },
-      { label:'Валюта баланса', value:'USDT' },
-    ],
-    note:'Финальные условия зависят от аппрува провайдера, качества трафика и compliance review.',
-  } },
-  { category:'cross-border', geo:'Kenya', flag:'ke', code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', details: {
-    payIn: { rate:'5%', limits:'100 – 250 000 KES' },
-    payOut: { rate:'4%', limits:'30 / 100 – 250 000 KES' },
-    facts: [
-      { label:'Методы', value:'M-Pesa, Airtel Money / Mobile Money' },
-      { label:'Минимальный объём', value:'от 100 000 USD в день по GEO' },
-      { label:'Settlement', value:'USDT, T+0 / T+1' },
-      { label:'Интеграция', value:'Payment Page / H2H / Redirect' },
-      { label:'Тип трафика', value:'FTD + Trusted / iGaming only' },
-      { label:'Валюта баланса', value:'USDT' },
-    ],
-    note:'Финальные условия зависят от аппрува провайдера, качества трафика и compliance review.',
-  } },
+  { category:'cross-border', geo:'Turkey', flag:'tr', code:'XBD · 07', title:'Turkey Bank Transfer', description:'IBAN и банковские переводы для Gambling и Betting.', meta:['TRY','IBAN','Bank transfer'], tone:'black', rates:{ payIn:'7%', payOut:'3%' } },
+  { category:'cross-border', geo:'Tanzania', flag:'tz', code:'XBD · 08', title:'Tanzania Mobile Money', description:'Tigo Pesa, Vodacom M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['TZS','Mobile Money','iGaming'], tone:'yellow', rates:{ payIn:'5%', payOut:'4%' } },
+  { category:'cross-border', geo:'Kenya', flag:'ke', code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', rates:{ payIn:'5%', payOut:'4%' } },
 ];
 
 const filters: { id: Category; label: string }[] = [
@@ -162,7 +111,7 @@ export default function Home() {
       <section className="offers shell" id="offers">
         <div className="section-title">
           <div><p>АКТИВНЫЕ НАПРАВЛЕНИЯ · OCTOBER 2026</p><h2>Наши решения,<br />которые можно запускать.</h2></div>
-          <p>Ставки и лимиты актуальны на момент публикации. Финальную доступность подтверждаем перед стартом.</p>
+          <p>Ставки актуальны на момент публикации. Лимиты и финальную доступность уточняйте перед стартом.</p>
         </div>
         <div className="filter-bar" aria-label="Фильтр офферов по региону">
           {filters.map((filter) => <button type="button" aria-pressed={activeFilter === filter.id} className={activeFilter === filter.id ? 'active' : ''} onClick={() => setActiveFilter(filter.id)} key={filter.id}>{filter.label} · {filter.id === 'all' ? offers.length : offers.filter((offer) => offer.category === filter.id).length}</button>)}
@@ -175,10 +124,10 @@ export default function Home() {
               <div className="offer-copy"><h3>{offer.title}</h3><p>{offer.description}</p></div>
               <div className="offer-bottom">
                 <div className="offer-rate">
-                  {offer.details ? (
+                  {offer.rates ? (
                     <div className="offer-rate-pair">
-                      <div><small>PAY IN</small><strong>{offer.details.payIn.rate}</strong></div>
-                      <div><small>PAY OUT</small><strong>{offer.details.payOut.rate}</strong></div>
+                      <div><small>PAY IN</small><strong>{offer.rates.payIn}</strong></div>
+                      <div><small>PAY OUT</small><strong>{offer.rates.payOut}</strong></div>
                     </div>
                   ) : (
                     <>
@@ -188,19 +137,6 @@ export default function Home() {
                   )}
                 </div>
                 <div className="tag-row">{offer.meta.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                {offer.details && (
-                  <details className="offer-details">
-                    <summary>Условия и лимиты <span aria-hidden="true">⌄</span></summary>
-                    <div className="offer-details-content">
-                      <dl>
-                        <div><dt>Pay in · лимиты</dt><dd>{offer.details.payIn.limits}</dd></div>
-                        <div><dt>Pay out · лимиты</dt><dd>{offer.details.payOut.limits}</dd></div>
-                        {offer.details.facts.map((fact) => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
-                      </dl>
-                      {offer.details.note && <p>{offer.details.note}</p>}
-                    </div>
-                  </details>
-                )}
               </div>
               <a className="offer-action" href={telegramHref(`${offer.geo} — ${offer.title}`)} target="_blank" rel="noreferrer">
                 Связаться <span aria-hidden="true">↗</span>
