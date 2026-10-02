@@ -139,7 +139,7 @@ export default function Home() {
           <p>Актуальные pay-in и pay-out решения для Gambling, Betting и Exchange по России и cross-border направлениям.</p>
           <div className="hero-actions">
             <a className="button button-pink" href="#offers">Смотреть офферы <span>↓</span></a>
-            <a className="button button-gray" href="#contact">Обсудить подключение</a>
+            <a className="button button-gray" href="#contact">Связаться</a>
           </div>
         </div>
         <div className="hero-product" aria-label="Панель активных платежных направлений">
@@ -203,7 +203,7 @@ export default function Home() {
                 )}
               </div>
               <a className="offer-action" href={telegramHref(`${offer.geo} — ${offer.title}`)} target="_blank" rel="noreferrer">
-                Обсудить маршрут <span aria-hidden="true">↗</span>
+                Связаться <span aria-hidden="true">↗</span>
               </a>
             </article>
           ))}
@@ -221,7 +221,7 @@ export default function Home() {
               <article className={`wanted-card wanted-${geo.tone}`} key={geo.code}>
                 <div className="wanted-head"><span><i className={`fi fi-${geo.flag}`} aria-hidden="true" /><small>{geo.code}</small></span><b><i /> SCOUTING</b></div>
                 <div className="wanted-geo"><small>{geo.region} · {geo.currency}</small><h3>{geo.title}</h3><p>{geo.text}</p></div>
-                <div className="wanted-bottom"><div className="tag-row">{geo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><a href={telegramHref(`${geo.title} — ${geo.tags.join(', ')}`)} target="_blank" rel="noreferrer">CONTACT US ↗</a></div>
+                <div className="wanted-bottom"><div className="tag-row">{geo.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><a href={telegramHref(`${geo.title} — ${geo.tags.join(', ')}`)} target="_blank" rel="noreferrer">Связаться ↗</a></div>
               </article>
             ))}
           </div>
