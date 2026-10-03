@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ),
   title: 'Fynzah — платежные офферы без границ · October 2026',
   description:
-    '15 платежных офферов для Gambling, Betting и Exchange по России и cross-border направлениям.',
+    '15 платежных офферов для Gambling, Betting и Exchange — СНГ и Worldwide.',
   openGraph: {
     title: 'Fynzah — платежные офферы без границ',
     description:

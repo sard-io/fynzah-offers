@@ -2,14 +2,27 @@
 
 import { useState } from 'react';
 
-type Category = 'all' | 'russia' | 'cross-border';
+const geos = [
+  { id:'ru', label:'РФ' },
+  { id:'kr', label:'Корея' },
+  { id:'vn', label:'Вьетнам' },
+  { id:'tj', label:'Таджикистан' },
+  { id:'abkhazia', label:'Абхазия' },
+  { id:'kz', label:'Казахстан' },
+  { id:'ar', label:'Аргентина' },
+  { id:'tr', label:'Турция' },
+  { id:'tz', label:'Танзания' },
+  { id:'ke', label:'Кения' },
+] as const;
+
+type Geo = (typeof geos)[number]['id'];
+type GeoFilter = 'all' | Geo;
 
 type OfferRates = { payIn: string; payOut: string };
 
 type Offer = {
-  category: Exclude<Category, 'all'>;
   geo: string;
-  flag: string;
+  geos: Geo[];
   code: string;
   title: string;
   description: string;
@@ -22,28 +35,24 @@ type Offer = {
 const telegramHref = (label: string) => `https://t.me/psp_assistant?text=${encodeURIComponent(`Привет! Интересует решение: ${label}`)}`;
 
 const offers: Offer[] = [
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 01', title:'C2C / SBP', description:'Основной RUB pay-in для Gambling, Betting и Exchange. Банки T1–T3.', rate:'13.5%', meta:['5k–150k','RUB','Gambling / Betting / Exchange'], tone:'pink' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 02', title:'SBP / C2C + PDF', description:'Прием по номеру карты и СБП с подтверждением через PDF-чек.', rate:'14%', meta:['1k–200k','RUB','PDF receipt'], tone:'black' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 03', title:'NSPK', description:'QR НСПК с высоким лимитом: локальный и мультитрансфер.', rate:'16%', meta:['3k–200k','QR','H2H'], tone:'yellow' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 04', title:'Sber / Gazprom QR', description:'Внутрибанковские QR-маршруты Сбер–Сбер и Газпром–Газпром.', rate:'14.5%', meta:['100–150k','QR','Gambling / Betting'], tone:'gray' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 05', title:'PSB Ecom', description:'Прямой RUB pay-in через ПСБ для Gambling и Betting трафика.', rate:'14%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
-  { category:'russia', geo:'Russia', flag:'ru', code:'RU · 06', title:'Alfa → Alfa', description:'Внутрибанковский перевод для Gambling и Betting трафика.', rate:'13.5%', meta:['10k–150k','RUB','Pay-in'], tone:'black' },
-  { category:'cross-border', geo:'Russia / Vietnam', flag:'ru+vn', code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'13%', meta:['100–150k','RUB','Gambling / Betting'], tone:'gray' },
-  { category:'cross-border', geo:'Russia / Tajikistan', flag:'ru+tj', code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
-  { category:'cross-border', geo:'Russia / Abkhazia', flag:'ru+abkhazia', code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
-  { category:'cross-border', geo:'Kazakhstan', flag:'kz', code:'XBD · 04', title:'KZT Cross-border', description:'Трансграничные маршруты из Казахстана: Грузия, Киргизия — постепенно расширяем.', rate:'contact us', meta:['KZT','Georgia','Kyrgyzstan'], tone:'yellow' },
-  { category:'cross-border', geo:'South Korea', flag:'kr', code:'XBD · 05', title:'Korea Bank Transfer', description:'Банковские переводы через Shinhan Bank, KEB Hana Bank и IBK для Gambling и Betting.', meta:['KRW','Bank transfer','Gambling / Betting'], tone:'gray', rates:{ payIn:'8%', payOut:'3,5%' } },
-  { category:'cross-border', geo:'Argentina', flag:'ar', code:'XBD · 06', title:'Argentina P2P + Wallets', description:'Локальные P2P-переводы и платежные кошельки для Gambling и Betting трафика.', rate:'contact us', meta:['ARS','P2P','Local wallets'], tone:'pink' },
-  { category:'cross-border', geo:'Turkey', flag:'tr', code:'XBD · 07', title:'Turkey Bank Transfer', description:'IBAN и банковские переводы для Gambling и Betting.', meta:['TRY','IBAN','Bank transfer'], tone:'black', rates:{ payIn:'7%', payOut:'3%' } },
-  { category:'cross-border', geo:'Tanzania', flag:'tz', code:'XBD · 08', title:'Tanzania Mobile Money', description:'Tigo Pesa, Vodacom M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['TZS','Mobile Money','iGaming'], tone:'yellow', rates:{ payIn:'5%', payOut:'4%' } },
-  { category:'cross-border', geo:'Kenya', flag:'ke', code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', rates:{ payIn:'5%', payOut:'4%' } },
+  { geo:'Russia', geos:['ru'], code:'RU · 01', title:'C2C / SBP', description:'Основной RUB pay-in для Gambling, Betting и Exchange. Банки T1–T3.', rate:'13.5%', meta:['5k–150k','RUB','Gambling / Betting / Exchange'], tone:'pink' },
+  { geo:'Russia', geos:['ru'], code:'RU · 02', title:'SBP / C2C + PDF', description:'Прием по номеру карты и СБП с подтверждением через PDF-чек.', rate:'14%', meta:['1k–200k','RUB','PDF receipt'], tone:'black' },
+  { geo:'Russia', geos:['ru'], code:'RU · 03', title:'NSPK', description:'QR НСПК с высоким лимитом: локальный и мультитрансфер.', rate:'16%', meta:['3k–200k','QR','H2H'], tone:'yellow' },
+  { geo:'Russia', geos:['ru'], code:'RU · 04', title:'Sber / Gazprom QR', description:'Внутрибанковские QR-маршруты Сбер–Сбер и Газпром–Газпром.', rate:'14.5%', meta:['100–150k','QR','Gambling / Betting'], tone:'gray' },
+  { geo:'Russia', geos:['ru'], code:'RU · 05', title:'PSB Ecom', description:'Прямой RUB pay-in через ПСБ для Gambling и Betting трафика.', rate:'14%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
+  { geo:'Russia', geos:['ru'], code:'RU · 06', title:'Alfa → Alfa', description:'Внутрибанковский перевод для Gambling и Betting трафика.', rate:'13.5%', meta:['10k–150k','RUB','Pay-in'], tone:'black' },
+  { geo:'Russia / Vietnam', geos:['ru','vn'], code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'13%', meta:['100–150k','RUB','Gambling / Betting'], tone:'gray' },
+  { geo:'Russia / Tajikistan', geos:['ru','tj'], code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
+  { geo:'Russia / Abkhazia', geos:['ru','abkhazia'], code:'XBD · 03', title:'Transgran Abkhazia', description:'Cross-border RUB-маршрут через трансграничный перевод.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'black' },
+  { geo:'Kazakhstan', geos:['kz'], code:'XBD · 04', title:'KZT Cross-border', description:'Трансграничные маршруты из Казахстана: Грузия, Киргизия — постепенно расширяем.', rate:'contact us', meta:['KZT','Georgia','Kyrgyzstan'], tone:'yellow' },
+  { geo:'South Korea', geos:['kr'], code:'XBD · 05', title:'Korea Bank Transfer', description:'Банковские переводы через Shinhan Bank, KEB Hana Bank и IBK для Gambling и Betting.', meta:['KRW','Bank transfer','Gambling / Betting'], tone:'gray', rates:{ payIn:'8%', payOut:'3,5%' } },
+  { geo:'Argentina', geos:['ar'], code:'XBD · 06', title:'Argentina P2P + Wallets', description:'Локальные P2P-переводы и платежные кошельки для Gambling и Betting трафика.', rate:'contact us', meta:['ARS','P2P','Local wallets'], tone:'pink' },
+  { geo:'Turkey', geos:['tr'], code:'XBD · 07', title:'Turkey Bank Transfer', description:'IBAN и банковские переводы для Gambling и Betting.', meta:['TRY','IBAN','Bank transfer'], tone:'black', rates:{ payIn:'7%', payOut:'3%' } },
+  { geo:'Tanzania', geos:['tz'], code:'XBD · 08', title:'Tanzania Mobile Money', description:'Tigo Pesa, Vodacom M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['TZS','Mobile Money','iGaming'], tone:'yellow', rates:{ payIn:'5%', payOut:'4%' } },
+  { geo:'Kenya', geos:['ke'], code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', rates:{ payIn:'5%', payOut:'4%' } },
 ];
 
-const filters: { id: Category; label: string }[] = [
-  { id:'all', label:'Все' },
-  { id:'russia', label:'Россия' },
-  { id:'cross-border', label:'Cross-border' },
-];
+const filters = geos.filter((geo) => offers.some((offer) => offer.geos.includes(geo.id)));
 
 const terms = [
   { number:'01', label:'Settlement', value:'Rapira / USDT', text:'T+0 доступен на части маршрутов — не гарантирован на всех.' },
@@ -59,11 +68,12 @@ const wantedGeos = [
   { code:'IR', flag:'ir', region:'MENA', title:'Иран', currency:'IRR', text:'Ищем local cards, bank transfer и локальные платежные решения.', tags:['Local cards','Bank transfer'], tone:'gray' },
 ];
 
-const geoCount = new Set(offers.flatMap((offer) => offer.flag.split('+'))).size;
+const geoCount = filters.length;
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState<Category>('all');
-  const visibleOffers = activeFilter === 'all' ? offers : offers.filter((offer) => offer.category === activeFilter);
+  const [activeFilter, setActiveFilter] = useState<GeoFilter>('all');
+  const visibleOffers = activeFilter === 'all' ? offers : offers.filter((offer) => offer.geos.includes(activeFilter));
+  const activeGeoLabel = activeFilter === 'all' ? 'Все GEO' : filters.find((geo) => geo.id === activeFilter)?.label;
 
   return (
     <main id="top">
@@ -84,7 +94,7 @@ export default function Home() {
         <div className="hero-copy">
           <div className="live-label"><i /> {offers.length} ACTIVE OFFERS</div>
           <h1>Платежные<br />офферы <em>без границ.</em></h1>
-          <p>Актуальные pay-in и pay-out решения для Gambling, Betting и Exchange по России и cross-border направлениям.</p>
+          <p>Актуальные pay-in и pay-out решения для Gambling, Betting и Exchange — СНГ и Worldwide.</p>
           <div className="hero-actions">
             <a className="button button-pink" href="#offers">Смотреть офферы <span>↓</span></a>
             <a className="button button-gray" href="#contact">Связаться</a>
@@ -112,14 +122,19 @@ export default function Home() {
           <div><p>АКТИВНЫЕ НАПРАВЛЕНИЯ · OCTOBER 2026</p><h2>Наши решения,<br />которые можно запускать.</h2></div>
           <p>Ставки актуальны на момент публикации. Лимиты и финальную доступность уточняйте перед стартом.</p>
         </div>
-        <div className="filter-bar" aria-label="Фильтр офферов по региону">
-          {filters.map((filter) => <button type="button" aria-pressed={activeFilter === filter.id} className={activeFilter === filter.id ? 'active' : ''} onClick={() => setActiveFilter(filter.id)} key={filter.id}>{filter.label} · {filter.id === 'all' ? offers.length : offers.filter((offer) => offer.category === filter.id).length}</button>)}
+        <div className="filter-bar" role="group" aria-label="Фильтр офферов по GEO">
+          <button type="button" aria-pressed={activeFilter === 'all'} className={`filter-all${activeFilter === 'all' ? ' active' : ''}`} onClick={() => setActiveFilter('all')}>Все</button>
+          {filters.map((filter) => (
+            <button type="button" aria-label={filter.label} title={filter.label} aria-pressed={activeFilter === filter.id} className={activeFilter === filter.id ? 'active' : undefined} onClick={() => setActiveFilter(filter.id)} key={filter.id}>
+              <i className={filter.id === 'abkhazia' ? 'flag-abkhazia' : `fi fi-${filter.id}`} aria-hidden="true" />
+            </button>
+          ))}
         </div>
-        <div className="catalog-meta"><span>ROUTE CATALOGUE</span><b>{visibleOffers.length.toString().padStart(2,'0')} OFFERS</b></div>
+        <div className="catalog-meta" aria-live="polite" aria-atomic="true"><span>{activeGeoLabel}</span><b>{visibleOffers.length.toString().padStart(2,'0')} OFFERS</b></div>
         <div className="offer-grid">
           {visibleOffers.map((offer) => (
             <article className={`offer-card tone-${offer.tone}`} key={offer.code}>
-              <div className="offer-top"><span>{offer.code}</span><b><span className="geo-flags" aria-hidden="true">{offer.flag.split('+').map((flag) => flag === 'abkhazia' ? <i className="flag-abkhazia" key={flag} /> : <i className={`fi fi-${flag}`} key={flag} />)}</span>{offer.geo}</b></div>
+              <div className="offer-top"><span>{offer.code}</span><b><span className="geo-flags" aria-hidden="true">{offer.geos.map((flag) => flag === 'abkhazia' ? <i className="flag-abkhazia" key={flag} /> : <i className={`fi fi-${flag}`} key={flag} />)}</span>{offer.geo}</b></div>
               <div className="offer-copy"><h3>{offer.title}</h3><p>{offer.description}</p></div>
               <div className="offer-bottom">
                 <div className="offer-rate">
