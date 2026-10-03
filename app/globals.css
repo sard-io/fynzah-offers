@@ -83,7 +83,6 @@ a { color:inherit; text-decoration:none; }
 .offer-rate { display:flex; flex-direction:column; gap:3px; }
 .offer-rate small { opacity:.55; font:700 8px var(--font-geist-mono),monospace; letter-spacing:.08em; }
 .offer-rate strong { font-size:43px; line-height:1; letter-spacing:-.06em; }
-.offer-rate .offer-rate-request { font-size:27px; line-height:1.15; letter-spacing:-.04em; }
 .offer-rate-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
 .offer-rate-pair > div { min-width:0; display:flex; flex-direction:column; gap:4px; }
 .offer-rate-pair > div + div { padding-left:15px; border-left:1px solid rgba(127,127,132,.42); }
