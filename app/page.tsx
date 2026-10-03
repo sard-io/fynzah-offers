@@ -55,7 +55,6 @@ const terms = [
 ];
 
 const wantedGeos = [
-  { code:'KR', flag:'kr', region:'Asia', title:'Южная Корея', currency:'KRW', text:'Ищем локальное решение для приема через KakaoPay.', tags:['KakaoPay','Local methods'], tone:'pink' },
   { code:'ET', flag:'et', region:'Africa', title:'Эфиопия', currency:'ETB', text:'Нужны mobile money и локальные pay-in / payout решения.', tags:['Mobile money','In / out'], tone:'yellow' },
   { code:'IR', flag:'ir', region:'MENA', title:'Иран', currency:'IRR', text:'Ищем local cards, bank transfer и локальные платежные решения.', tags:['Local cards','Bank transfer'], tone:'gray' },
 ];
