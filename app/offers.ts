@@ -37,7 +37,7 @@ export const offers: Offer[] = [
   { geo:'Russia', geos:['ru'], code:'RU · 04', title:'Sber / Gazprom QR', description:'Внутрибанковские QR-маршруты Сбер–Сбер и Газпром–Газпром.', rate:'14.5%', meta:['100–150k','QR','Gambling / Betting'], tone:'gray' },
   { geo:'Russia', geos:['ru'], code:'RU · 05', title:'PSB Ecom', description:'Прямой RUB pay-in через ПСБ для Gambling и Betting трафика.', rate:'14%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
   { geo:'Russia', geos:['ru'], code:'RU · 06', title:'Alfa → Alfa', description:'Внутрибанковский перевод для Gambling и Betting трафика.', rate:'13.5%', meta:['10k–150k','RUB','Pay-in'], tone:'black' },
-  { geo:'Russia', geos:['ru'], code:'RU · 07', title:'Выплаты РФ · Out RU', description:'SLA от 3 часов. Дробление заявки на 3 и более выплат.', rate:'2%', meta:['RUB','Pay-out','Парс Rapira'], tone:'yellow' },
+  { geo:'Russia', geos:['ru'], code:'RU · 07', title:'Выплаты РФ · Out RU', description:'SLA от 3 часов. Дробление заявки на 3 и более выплат.', meta:['RUB','Pay-out','Парс Rapira'], tone:'yellow' },
   { geo:'Russia / Vietnam', geos:['ru','vn'], code:'XBD · 01', title:'Sber / VTB QR', description:'Cross-border QR через Сбербанк и ВТБ с расчетом в RUB.', rate:'13%', meta:['100–150k','RUB','Gambling / Betting'], tone:'gray' },
   { geo:'Russia / Tajikistan', geos:['ru','tj'], code:'XBD · 02', title:'YouMoney', description:'Cross-border прием через YouMoney с расчетом в RUB.', rate:'12.5%', meta:['1k–150k','RUB','Pay-in'], tone:'pink' },
   { geo:'Tajikistan', geos:['tj'], code:'TJ · 01', title:'МК · Таджикистан', description:'Платёжное направление МК для Таджикистана.', meta:['МК'], tone:'gray' },
