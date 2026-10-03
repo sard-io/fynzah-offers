@@ -11,6 +11,10 @@ export const geos = [
   { id:'tr', label:'Турция' },
   { id:'tz', label:'Танзания' },
   { id:'ke', label:'Кения' },
+  { id:'in', label:'Индия' },
+  { id:'bd', label:'Бангладеш' },
+  { id:'br', label:'Бразилия' },
+  { id:'az', label:'Азербайджан' },
 ] as const;
 
 type Geo = (typeof geos)[number]['id'];
@@ -53,6 +57,10 @@ export const offers: Offer[] = [
   { geo:'Kenya', geos:['ke'], code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', rates:{ payIn:'5%', payOut:'4%' } },
   { geo:'Kyrgyzstan', geos:['kg'], code:'KG · 01', title:'МК · KGS', description:'Платёжное направление МК в KGS.', meta:['KGS','МК'], tone:'gray' },
   { geo:'Uzbekistan', geos:['uz'], code:'UZ · 01', title:'Узбекистан · UZS', description:'Платежи в узбекских сумах.', meta:['UZS'], tone:'black' },
+  { geo:'India', geos:['in'], code:'IN · 01', title:'Индия', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'pink' },
+  { geo:'Bangladesh', geos:['bd'], code:'BD · 01', title:'Бангладеш', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'black' },
+  { geo:'Brazil', geos:['br'], code:'BR · 01', title:'Бразилия', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'yellow' },
+  { geo:'Azerbaijan', geos:['az'], code:'AZ · 01', title:'Азербайджан', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'gray' },
 ];
 
 export const filters = geos.filter((geo) => offers.some((offer) => offer.geos.includes(geo.id)));
