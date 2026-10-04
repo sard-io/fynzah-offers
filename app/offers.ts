@@ -57,9 +57,11 @@ export const offers: Offer[] = [
   { geo:'Kenya', geos:['ke'], code:'XBD · 09', title:'Kenya Mobile Money', description:'M-Pesa и Airtel Money для iGaming, Gambling и Betting.', meta:['KES','Mobile Money','iGaming'], tone:'pink', rates:{ payIn:'5%', payOut:'4%' } },
   { geo:'Kyrgyzstan', geos:['kg'], code:'KG · 01', title:'МК · KGS', description:'Платёжное направление МК в KGS.', meta:['KGS','МК'], tone:'gray' },
   { geo:'Uzbekistan', geos:['uz'], code:'UZ · 01', title:'Узбекистан · UZS', description:'Платежи в узбекских сумах.', meta:['UZS'], tone:'black' },
-  { geo:'India', geos:['in'], code:'IN · 01', title:'Индия', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'pink' },
-  { geo:'Bangladesh', geos:['bd'], code:'BD · 01', title:'Бангладеш', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'black' },
-  { geo:'Brazil', geos:['br'], code:'BR · 01', title:'Бразилия', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'yellow' },
+  { geo:'India', geos:['in'], code:'IN · 01', title:'Индия · UPI P2C Intent', description:'Приём и выплаты через UPI P2C Intent. Ставки уточняйте в личных сообщениях.', meta:['INR','UPI','D0 / USDT'], tone:'pink' },
+  { geo:'India', geos:['in'], code:'IN · 02', title:'Индия · Airtel UPI', description:'Airtel current account: UPI P2P в формате quasi-intent. Ставки уточняйте в личных сообщениях.', meta:['INR','P2P','Quasi-intent'], tone:'gray' },
+  { geo:'India', geos:['in'], code:'IN · 03', title:'Индия · UPI P2P Netting', description:'Приём и выплаты через UPI P2P с неттингом. Ставки уточняйте в личных сообщениях.', meta:['INR','H2H','T+0 / USDT'], tone:'black' },
+  { geo:'Bangladesh', geos:['bd'], code:'BD · 01', title:'Бангладеш · P2P', description:'Приём и выплаты через bKash и Nagad. Ставки уточняйте в личных сообщениях.', meta:['BDT','P2P','D0 / USDT'], tone:'black' },
+  { geo:'Brazil', geos:['br'], code:'BR · 01', title:'Бразилия · PIX', description:'Приём и выплаты через PIX. Ставки уточняйте в личных сообщениях.', meta:['BRL','PIX','D0 / USDT'], tone:'yellow' },
   { geo:'Azerbaijan', geos:['az'], code:'AZ · 01', title:'Азербайджан', description:'Ставки и детали уточняйте в личных сообщениях.', meta:[], tone:'gray' },
 ];
 
